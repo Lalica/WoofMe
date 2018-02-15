@@ -1,0 +1,31 @@
+﻿@model WoofMe.Models.QuizModels.QuizResultModel
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @{
+            ViewData["Title"] = "Quiz Result";
+        }
+    </title>
+</head>
+<body>
+    @if (Model.Doggies.Count() != 0)
+    {
+        foreach (var d in Model.Doggies)
+        {
+            <hr />
+            <img src="~/images/@d.Picture" height="400" width="420" />
+            <h4><strong>@d.Name</strong></h4>
+        }
+
+    }
+    else
+    {
+        <hr />
+        <h4>There are no dogs matching your wishes.</h4>
+
+    }
+    <a asp-action="Quiz"><strong>Take another quiz.</strong></a>
+</body>
+</html>

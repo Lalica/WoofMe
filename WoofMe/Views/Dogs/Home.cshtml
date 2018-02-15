@@ -1,0 +1,32 @@
+﻿@model WoofMe.Models.DogListModels.NotAdoptedDogsModel
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @{
+            ViewData["Title"] = "Dogs looking for home";
+        }
+    </title>
+</head>
+<body>
+    @if (Model.Doggies.Count() != 0)
+    {
+        foreach (var d in Model.Doggies)
+        {
+            <hr />
+            <img src="~/images/@d.Picture" height="400" />
+            <h4><strong>@d.Name</strong></h4>
+            <h4>@d.Age</h4>
+            <a asp-action="Detail" asp-route-id="@d.Id"><strong>Details</strong></a>
+        }
+
+    }
+    else
+    {
+        <hr />
+        <h4>There are no dogs seaching for home. Yay!</h4>
+
+    }
+</body>
+</html>

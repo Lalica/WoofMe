@@ -1,0 +1,67 @@
+﻿@model WoofMe.Models.DogModels.AddNewDogModel
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @{
+            ViewData["Title"] = "Add a Dog";
+        }
+    </title>
+</head>
+<body>
+<h2><strong>Create new todo item</strong></h2>
+<form asp-controller="Dogs" asp-action="AddDog" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Race" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Race" class="form-control" />
+            <span asp-validation-for="Race" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="BirthDate" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="BirthDate" type="datetime-local" />
+            <span asp-validation-for="BirthDate"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Size" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Size" class="form-control" />
+            <span asp-validation-for="Size" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Lenght" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Lenght" class="form-control" />
+            <span asp-validation-for="Lenght" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload picture using this form:</p>
+            <input asp-for="Picture" type="file" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Create</button>
+        </div>
+    </div>
+</form>
+<div>
+</div>
+</body>
+</html>

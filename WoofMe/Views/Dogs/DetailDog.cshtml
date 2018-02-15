@@ -1,0 +1,32 @@
+﻿@model WoofMe.Models.DogModels.FullDogInfoModel
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @{
+            ViewData["Title"] = "Dogs looking for home";
+        }
+    </title>
+</head>
+<body>
+<img src="~/images/@Model.Picture" height="500" />
+<div>
+    <label asp-for="Name" class="col-md-2 control-label"></label>
+    <h4><strong>@Model.Name</strong></h4>
+</div>
+<div>
+    <label asp-for="Age" class="col-md-2 control-label"></label>
+    <h4>@Model.Age, (<label asp-for="BirthDate" class="col-md-2 control-label"></label>@Model.BirthDate)</h4>
+</div>
+<div>
+    <label asp-for="Race" class="col-md-2 control-label"></label>
+    <h4>@Model.Race</h4>
+
+</div>
+<div>
+    <label asp-for="Info" class="col-md-2 control-label"></label>
+    <h4>@Model.Info</h4> 
+</div>
+</body>
+</html>

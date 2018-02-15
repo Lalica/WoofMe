@@ -1,0 +1,47 @@
+﻿@model WoofMe.Models.QuizModels.QuizModel
+
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            @{
+                ViewData["Title"] = "Quiz";
+            }
+        </title>
+    </head>
+    <body>
+        <h2><strong>See which dog is for you</strong></h2>
+        <form asp-controller="Quiz" asp-action="Quiz" method="post" class="form-horizontal">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Size" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Size" class="form-control" />
+                    <span asp-validation-for="Size" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <p>Can be: young, old</p>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="HairLenght" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="HairLenght" class="form-control" />
+                    <span asp-validation-for="HairLenght"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-default">Find</button>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+
