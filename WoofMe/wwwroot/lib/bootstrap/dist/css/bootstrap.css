@@ -143,7 +143,9 @@ input::-moz-focus-inner {
 input {
   line-height: normal;
 }
-input[type="checkbox"],
+    input[type="checkbox"] {
+        transform: scale(2);
+    }
 input[type="radio"] {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -2518,9 +2520,10 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
-  margin-top: 1px \9;
-  line-height: normal;
+    transform: scale(2);
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
 }
 input[type="file"] {
   display: block;
@@ -2633,10 +2636,11 @@ input[type="search"] {
 }
 .radio,
 .checkbox {
-  position: relative;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    transform: scale(2);
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .radio label,
 .checkbox label {

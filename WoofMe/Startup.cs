@@ -64,7 +64,7 @@ namespace WoofMe
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Dogs}/{action=Home}/{id?}");
             });
 
             CreateRoles(serviceProvider).Wait();

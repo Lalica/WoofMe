@@ -15,7 +15,7 @@
         foreach (var d in Model.Doggies)
         {
             <hr />
-            <img src="~/images/@d.Picture" height="400" width="420" />
+            <img src="~/images/@d.Picture" style="object-fit: cover; border-radius: 3%" height="900" />
             <h4><strong>@d.Name</strong></h4>
         }
 

@@ -29,11 +29,13 @@ namespace WoofMe.Models.DogModels
         public string BirthDate { get; set; }
 
         [Required]
-        [Display(Name = "Race")]
+        [Display(Name = "Breed")]
         public string Race { get; set; }
 
         [Display(Name = "Info")]
         public string Info { get; set; }
+        [Display(Name = "Gender")]
+        public Gender Gender { get; set; }
 
         public FullDogInfoModel(Dog dog)
         {
@@ -42,8 +44,9 @@ namespace WoofMe.Models.DogModels
             Race = dog.Race;
             Info = dog.Info;
             Picture = dog.Picture;
-            Age = (int) (dog.BirthDate - DateTime.Now).TotalDays / 365;
+            Age = (int) (DateTime.Now - dog.BirthDate).TotalDays / 365;
             BirthDate = dog.BirthDate.ToString();
+            Gender = dog.Gender;
         }
 
         public FullDogInfoModel()

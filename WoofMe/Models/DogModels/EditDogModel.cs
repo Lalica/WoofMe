@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using WoofMe.Classes;
 
 namespace WoofMe.Models.DogModels
 {
-    public class AddNewDogModel
+    public class EditDogModel
     {
-        [Display(Name = "Picture")]
+        [Required]
+        public Guid Id { get; set; }
+        [Required]
+        [Display(Name = "Current Picture name")]
         public string Picture { get; set; }
+        [Display(Name = "New Picture")]
+        public string NewPicture { get; set; }
         [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -32,5 +36,8 @@ namespace WoofMe.Models.DogModels
         [Required]
         [Display(Name = "Hair Lenght")]
         public HairLenght Lenght { get; set; }
+        [Required]
+        [Display(Name = "Adopted")]
+        public bool HasHome { get; set; }
     }
 }

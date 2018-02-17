@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <UserSecretsId>aspnet-WoofMe-EC23982E-9C5E-4B31-901F-D45A1F1ED0B7</UserSecretsId>
+    <StartupObject>WoofMe.Program</StartupObject>
   </PropertyGroup>
 
 

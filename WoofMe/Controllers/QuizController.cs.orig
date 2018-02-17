@@ -31,6 +31,7 @@ namespace WoofMe.Controllers
         {
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
                 var dogs = _repository.GetToBeAdpoted();
                 var dict = new Dictionary<Dog, int>();
                 foreach (var dog in dogs)
@@ -40,9 +41,9 @@ namespace WoofMe.Controllers
 
                 foreach (var dog in dogs)
                 {
-                    if (dog.Size==model.Size) dict[dog]++;
-                    if (dog.HairLenght==model.HairLenght) dict[dog]++;
-                    if (dog.Gender == model.Gender) dict[dog]++;
+                    if (dog.Size.Equals(model.Size)) dict[dog]++;
+                    if (dog.HairLenght.Equals(model.HairLenght)) dict[dog]++;
+                    if (dog.Gender.Equals(model.Gender)) dict[dog]++;
                     if (dog.GetAge().Equals(model.Age)) dict[dog]++;
                 }
 
@@ -55,7 +56,24 @@ namespace WoofMe.Controllers
                 }
                 return View("QuizResult", result);
             }
+            return View();
+=======
+                List<Dog> dogs = _repository.GetToBeAdpoted();
+                dogs = dogs.Where(i => string.Equals(i.Size.ToString(), model.Size.ToString(), StringComparison.CurrentCultureIgnoreCase)
+                                       && string.Equals(i.HairLenght.ToString(), model.HairLenght.ToString(), StringComparison.CurrentCultureIgnoreCase)
+                                       && string.Equals(i.GetAge().ToString(), model.Age.ToString(), StringComparison.CurrentCultureIgnoreCase)
+                                       && string.Equals(i.Gender.ToString(), model.Gender.ToString(), StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+                QuizResultModel result = new QuizResultModel();
+                foreach (Dog d in dogs)
+                {
+                    PartialDogInfoModel dog = new PartialDogInfoModel(d);
+                    result.Doggies.Add(dog);
+                }
+                return View("QuizResult", result);
+            }
             return View(model);
+>>>>>>> 2067d708933301faa4ba9d4569c82d4b267317c3
         }
     }
 }

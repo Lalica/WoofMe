@@ -26,25 +26,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WoofMe</a>
+                <a asp-area="" asp-controller="Dogs" asp-action="Home" class="navbar-brand">WoofMe</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Dogs" asp-action="Home">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Dogs" asp-action="Adopted">Adopted</a></li>
                     <li><a asp-area="" asp-controller="Quiz" asp-action="Quiz">Quiz</a></li>
                     @if (User.Identity.IsAuthenticated)
-                    {
-                        if (User.IsInRole("Employee"))
-                        {
-                            <li><a asp-area="" asp-controller="Dogs" asp-action="AddDog">Add a dog</a></li>
-                        }
-                        if (User.IsInRole("Admin"))
-                        {
-                            <li><a asp-area="" asp-controller="Account" asp-action="AddEmployee">Add an employee</a></li>
-                        }
-                     }
+    {
+        if (User.IsInRole("Employee"))
+        {
+                <li><a asp-area="" asp-controller="Dogs" asp-action="AddDog">Add a dog</a></li>
+}
+if (User.IsInRole("Admin"))
+{
+                <li><a asp-area="" asp-controller="Account" asp-action="AddEmployee">Add an employee</a></li>
+}
+}
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

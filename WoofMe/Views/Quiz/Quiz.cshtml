@@ -1,47 +1,87 @@
 ﻿@model WoofMe.Models.QuizModels.QuizModel
 
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            @{
-                ViewData["Title"] = "Quiz";
-            }
-        </title>
-    </head>
-    <body>
-        <h2><strong>See which dog is for you</strong></h2>
-        <form asp-controller="Quiz" asp-action="Quiz" method="post" class="form-horizontal">
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Size" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Size" class="form-control" />
-                    <span asp-validation-for="Size" class="text-danger"></span>
-                </div>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @{
+            ViewData["Title"] = "Quiz";
+        }
+    </title>
+</head>
+<body>
+<h2><strong>See which dog is for you</strong></h2>
+<h4>This quiz will find you a dog from our shelter which satisfies the most of your wishes.</h4>
+    <form asp-controller="Quiz" asp-action="Quiz" method="post" class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Gender" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Gender" type="radio" class="radio_item" id="radio11" value="0" />
+                <label class="label_item" for="radio11"> <img src="~/images/Male.png" style="object-fit: cover" height="170"> </label>
+                <input asp-for="Gender" type="radio" class="radio_item" id="radio12" value="1" />
+                <label class="label_item" for="radio12"> <img src="~/images/Female.png" style="object-fit: cover" height="170"> </label>
+                <span asp-validation-for="Gender"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Age" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <p>Can be: young, old</p>
-                    <input asp-for="Age" class="form-control" />
-                    <span asp-validation-for="Age" class="text-danger"></span>
-                </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Size" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Size" type="radio" class="radio_item" id="radio8" value="0" />
+                <label class="label_item" for="radio8"> <img src="~/images/Small.jpg" style="object-fit: cover" height="170"> </label>
+                <input asp-for="Size" type="radio" class="radio_item" id="radio9" value="1" />
+                <label class="label_item" for="radio9"> <img src="~/images/Medium.jpg" style="object-fit: cover" height="170"> </label>
+                <input asp-for="Size" type="radio" class="radio_item" id="radio10" value="2" />
+                <label class="label_item" for="radio10"> <img src="~/images/Big.jpg" style="object-fit: cover" height="170"> </label>
+                <span asp-validation-for="Size"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="HairLenght" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="HairLenght" class="form-control" />
-                    <span asp-validation-for="HairLenght"></span>
-                </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HairLenght" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="HairLenght" type="radio" class="radio_item" id="radio5" value="0" />
+                <label class="label_item" for="radio5"> <img src="~/images/ShortHair.png" style="object-fit: cover" height="170"> </label>
+                <input asp-for="HairLenght" type="radio" class="radio_item" id="radio6" value="1" />
+                <label class="label_item" for="radio6"> <img src="~/images/MediumHair.jpg" style="object-fit: cover" height="170"> </label>
+                <input asp-for="HairLenght" type="radio" class="radio_item" id="radio7" value="2" />
+                <label class="label_item" for="radio7"> <img src="~/images/LongHair.jpg" style="object-fit: cover" height="170"> </label>
+                <span asp-validation-for="HairLenght"></span>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-default">Find</button>
-                </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Age" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Age" type="radio" class="radio_item" id="radio1" value="Puppy" />
+                <label class="label_item" for="radio1"> <img src="~/images/Puppy.jpg" style="object-fit: cover" height="170" width="220"> </label>
+                <input asp-for="Age" type="radio" class="radio_item" id="radio2" value="Young" />
+                <label class="label_item" for="radio2"> <img src="~/images/Young.jpg" style="object-fit: cover" height="170" width="220"> </label>
+                <input asp-for="Age" type="radio" class="radio_item" id="radio3" value="Adult" />
+                <label class="label_item" for="radio3"> <img src="~/images/Adult.jpg" style="object-fit: cover" height="170" width="220"> </label>
+                <input asp-for="Age" type="radio" class="radio_item" id="radio4" value="Old" />
+                <label class="label_item" for="radio4"> <img src="~/images/Old.jpg" style="object-fit: cover" height="170" width="220"> </label>
+                <span asp-validation-for="Age"></span>
             </div>
-        </form>
-    </body>
-</html>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">Find</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>>
 
+<style>
+    .radio_item{
+        display: none !important;
+    }
+
+    .label_item {
+        opacity: 0.7;
+        margin-left: 1%;
+    }
+
+    .radio_item:checked + label {
+        opacity: 1;
+    }
+</style>

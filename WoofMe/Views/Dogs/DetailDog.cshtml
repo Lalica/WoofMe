@@ -10,23 +10,28 @@
     </title>
 </head>
 <body>
-<img src="~/images/@Model.Picture" height="500" />
+<h4></h4>
+<img src="~/images/@Model.Picture" style="object-fit: cover; border-radius: 3%" height="700"/>
 <div>
-    <label asp-for="Name" class="col-md-2 control-label"></label>
+    <h4><label asp-for="Name" class="col-sm-2"></label></h4>
     <h4><strong>@Model.Name</strong></h4>
 </div>
 <div>
-    <label asp-for="Age" class="col-md-2 control-label"></label>
-    <h4>@Model.Age, (<label asp-for="BirthDate" class="col-md-2 control-label"></label>@Model.BirthDate)</h4>
+    <h4><label asp-for="Age" class="col-sm-2"></label></h4>
+    <h4>@Model.Age (Birthdate: @Model.BirthDate.Split()[0])</h4>
 </div>
 <div>
-    <label asp-for="Race" class="col-md-2 control-label"></label>
+    <h4><label asp-for="Gender" class="col-sm-2"></label></h4>
+    <h4>@Model.Gender</h4>
+</div>
+<div>
+    <h4><label asp-for="Race" class="col-sm-2"></label></h4>
     <h4>@Model.Race</h4>
 
 </div>
 <div>
-    <label asp-for="Info" class="col-md-2 control-label"></label>
-    <h4>@Model.Info</h4> 
+    <h4><label asp-for="Info" class="col-sm-2"></label></h4>
+    <h4>@Model.Info</h4>
 </div>
 </body>
 </html>

@@ -37,7 +37,7 @@ namespace WoofMe.Controllers
             AdoptedDogsModel model = new AdoptedDogsModel();
             try
             {
-                dogs = _repository.GetAdopted();
+                dogs = _repository.GetAdopted().OrderBy(d=>d.Name).ToList();
                 foreach (Dog d in dogs)
                 {
                     partialDog = new PartialDogInfoModel(d);
@@ -81,6 +81,7 @@ namespace WoofMe.Controllers
                                         newDog.AddInfo(model.Info);
                                     }
                                     newDog.AddSize(model.Size);
+                                    newDog.SetGender(model.Gender);
                                     newDog.AddHairLenght(model.Lenght);
                                     _repository.AddDog(newDog);
                                     return RedirectToAction("Home");
@@ -88,8 +89,6 @@ namespace WoofMe.Controllers
                             }
                         }
                     }
-                    
-                    
                 }
             }
             catch (Exception ex)
@@ -114,7 +113,7 @@ namespace WoofMe.Controllers
             NotAdoptedDogsModel model = new NotAdoptedDogsModel();
             try
             {
-                dogs = _repository.GetToBeAdpoted();
+                dogs = _repository.GetToBeAdpoted().OrderBy(d => d.Name).ToList();
                 foreach (Dog d in dogs)
                 {
                     partialDog = new PartialDogInfoModel(d);
@@ -130,15 +129,6 @@ namespace WoofMe.Controllers
         }
 
         [HttpGet]
-        public IActionResult ApplyFilters(NotAdoptedDogsModel model)
-        {
-            model.Doggies = model.AgeSelected ? model.Doggies.Where(d => d.Age == model.AgeFilter).ToList() : model.Doggies;
-            model.Doggies = model.RaceSelected ? model.Doggies.Where(d => d.Race == model.RaceFilter).ToList() : model.Doggies;
-            model.Doggies = model.SizeSelected ? model.Doggies.Where(d => d.Size == model.SizeFilter).ToList() : model.Doggies;
-            return View("Home",model);
-        }
-
-        [HttpGet]
         public IActionResult Detail(Guid Id)
         {
             Dog dog =_repository.GetDog(Id);
@@ -150,6 +140,90 @@ namespace WoofMe.Controllers
         public IActionResult DetailDog(FullDogInfoModel dog)
         {
             return View(dog);
+        }
+
+        [Authorize(Roles = "Employee")]
+        public IActionResult Remove(Guid Id)
+        {
+            Dog dog = _repository.GetDog(Id);
+            try
+            {
+                _repository.RemoveDog(dog.Id);
+                return RedirectToAction("Adopted");
+            }
+            catch (Exception ex)
+            {
+                _repository.AddError(ex.Message);
+                return RedirectToAction("Detail", Id);
+            }
+        }
+        
+        [Authorize(Roles = "Employee")]
+        public IActionResult Edit(Guid Id)
+        {
+            Dog dog = _repository.GetDog(Id);
+            EditDogModel editedDog = new EditDogModel();
+            editedDog.Id = dog.Id;
+            editedDog.Picture = dog.Picture;
+            editedDog.Race = dog.Race;
+            editedDog.BirthDate = dog.BirthDate;
+            editedDog.Gender = dog.Gender;
+            editedDog.HasHome = dog.HasHome;
+            editedDog.Info = dog.Info;
+            editedDog.Lenght = dog.HairLenght;
+            editedDog.Name = dog.Name;
+            editedDog.Size = dog.Size;
+
+            return View("Edit", editedDog);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Employee")]
+        public async Task<IActionResult> Edit(EditDogModel editedDog)
+        {
+            if (ModelState.IsValid)
+            {
+                var files = HttpContext.Request.Form.Files;
+                foreach (var Image in files)
+                {
+                    if (Image != null && Image.Length > 0)
+                    {
+                        var file = Image;
+                        var uploads = Path.Combine(_appEnvironment.WebRootPath, "images");
+                        if (file.Length > 0)
+                        {
+                            var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
+                            using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+                                editedDog.Picture = fileName;
+                            }
+                        }
+                    }
+                }
+                Dog dog = _repository.GetDog(editedDog.Id);
+                dog.Picture = editedDog.Picture;
+                dog.Race = editedDog.Race;
+                dog.BirthDate = editedDog.BirthDate;
+                dog.Gender = editedDog.Gender;
+                dog.HasHome = editedDog.HasHome;
+                dog.Info = editedDog.Info;
+                dog.HairLenght = editedDog.Lenght;
+                dog.Name = editedDog.Name;
+                dog.Size = editedDog.Size;
+
+                try
+                {
+                    _repository.Update(dog);
+                }
+                catch (Exception ex)
+                {
+                    _repository.AddError(ex.Message);
+                }
+                return RedirectToAction("Home");
+            }
+            return View(editedDog);
         }
     }
 }

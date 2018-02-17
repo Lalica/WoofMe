@@ -21,10 +21,10 @@ namespace WoofMe.Classes
             modelBuilder.Entity<Dog>().Property(i => i.BirthDate).IsRequired();
             modelBuilder.Entity<Dog>().Property(i => i.Picture).IsRequired();
             modelBuilder.Entity<Dog>().Property(i => i.HasHome).IsRequired();
+            modelBuilder.Entity<Dog>().Property(i => i.Gender).IsOptional();
             modelBuilder.Entity<Dog>().Property(i => i.Info).IsOptional();
             modelBuilder.Entity<Dog>().Property(i => i.Size).IsOptional();
             modelBuilder.Entity<Dog>().Property(i => i.HairLenght).IsOptional();
-            //modelBuilder.Entity<Dog>().HasMany(i => i.Vaccines);
 
             modelBuilder.Entity<User>().HasKey(i => i.Id);
             modelBuilder.Entity<User>().Property(i => i.Name).IsRequired();

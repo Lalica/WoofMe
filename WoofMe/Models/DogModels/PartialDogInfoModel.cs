@@ -21,20 +21,23 @@ namespace WoofMe.Models.DogModels
         [Display(Name = "Age")]
         public string Age { get; set; }
         [Required]
-        [Display(Name = "Race")]
+        [Display(Name = "Breed")]
         public string Race { get; set; }
         [Required]
-        [Display(Name = "Race")]
+        [Display(Name = "Size")]
         public string Size { get; set; }
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
 
         public PartialDogInfoModel(Dog dog)
         {
             Id = dog.Id;
             Name = dog.Name;
             Picture = dog.Picture;
-            Age = dog.GetAge().ToLower();
-            Race = dog.Race.ToLower();
+            Age = dog.GetAge();
+            Race = dog.Race;
             Size = dog.Size.ToString().ToLower();
+            Gender = dog.Gender.ToString().ToLower(); ;
         }
     }
 }

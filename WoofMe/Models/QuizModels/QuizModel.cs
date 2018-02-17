@@ -18,5 +18,8 @@ namespace WoofMe.Models.QuizModels
         [Required]
         [Display(Name = "Preffered age")]
         public string Age { get; set; }
+        [Required]
+        [Display(Name = "Preffered gender")]
+        public Gender Gender { get; set; }
     }
 }

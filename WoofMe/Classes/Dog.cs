@@ -17,7 +17,7 @@ namespace WoofMe.Classes
         public bool HasHome { get; set; }
         public DogSize Size { get; set; }
         public HairLenght HairLenght { get; set; }
-        //public List<String> Vaccines { get; set; }
+        public Gender Gender { get; set; }
 
         public Dog(String name, String race, DateTime birthDate, string picture)
         {
@@ -27,7 +27,6 @@ namespace WoofMe.Classes
             BirthDate = birthDate;
             Picture = picture;
             Id = Guid.NewGuid();
-            //Vaccines = new List<string>();
         }
         public Dog()
         {
@@ -37,7 +36,7 @@ namespace WoofMe.Classes
         {
             if ((DateTime.Now - BirthDate).Days < 1 * 365)
             {
-                return "Baby";
+                return "Puppy";
             }
             if ((DateTime.Now - BirthDate).Days < 3 * 365)
             {
@@ -49,7 +48,10 @@ namespace WoofMe.Classes
             }
             return "Old";
         }
-
+        public void SetGender(Gender gender)
+        {
+            Gender = gender;
+        }
         public void AddInfo(String text)
         {
             Info = text;
@@ -97,5 +99,10 @@ namespace WoofMe.Classes
         Short,
         Medium,
         Long
+    }
+    public enum Gender
+    {
+       Male,
+       Female
     }
 }

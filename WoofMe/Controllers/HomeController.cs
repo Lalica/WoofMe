@@ -12,7 +12,7 @@ namespace WoofMe.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("About");
         }
 
         public IActionResult About()
@@ -26,7 +26,7 @@ namespace WoofMe.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View();
+            return View("About");
         }
 
         public IActionResult Error()

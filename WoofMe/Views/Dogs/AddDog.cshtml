@@ -1,4 +1,5 @@
 ﻿@model WoofMe.Models.DogModels.AddNewDogModel
+@using WoofMe.Classes
 
 <html>
 <head>
@@ -10,7 +11,7 @@
     </title>
 </head>
 <body>
-<h2><strong>Create new todo item</strong></h2>
+<h2><strong>Add a new dog</strong></h2>
 <form asp-controller="Dogs" asp-action="AddDog" method="post" class="form-horizontal" enctype="multipart/form-data">
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -24,34 +25,51 @@
     <div class="form-group">
         <label asp-for="Race" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Race" class="form-control" />
-            <span asp-validation-for="Race" class="text-danger"></span>
+            <select asp-for="Race">
+                <option value="Unknown">Please select</option>
+                @foreach (string b in Breeds.AllBreeds())
+                {
+                    <option value=@b>@b</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Gender" type="radio" value="0" /> Male
+            <input asp-for="Gender" type="radio" value="1" /> Female
+            <span asp-validation-for="Gender"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="BirthDate" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="BirthDate" type="datetime-local" />
+            <input asp-for="BirthDate" type="date" />
             <span asp-validation-for="BirthDate"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Size" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Size" class="form-control" />
-            <span asp-validation-for="Size" class="text-danger"></span>
+            <input asp-for="Size" type="radio" value="0" /> Small
+            <input asp-for="Size" type="radio" value="1" /> Medium
+            <input asp-for="Size" type="radio" value="2" /> Big
+            <span asp-validation-for="Size"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Lenght" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Lenght" class="form-control" />
-            <span asp-validation-for="Lenght" class="text-danger"></span>
+            <input asp-for="Lenght" type="radio" value="0" /> Short
+            <input asp-for="Lenght" type="radio" value="1" /> Medium
+            <input asp-for="Lenght" type="radio" value="2" /> Long
+            <span asp-validation-for="Lenght"></span>
         </div>
     </div>
     <div class="form-group">
+        <label asp-for="Picture" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <p>Upload picture using this form:</p>
             <input asp-for="Picture" type="file" class="form-control" />
         </div>
     </div>

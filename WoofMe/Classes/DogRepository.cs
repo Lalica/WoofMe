@@ -78,13 +78,18 @@ namespace WoofMe.Classes
             {
                 _context.Dogs.Remove(doggie);
                 _context.SaveChanges();
-
-                doggie.Info = newDoggie.Info;
+                doggie.Picture = newDoggie.Picture;
+                doggie.Race = newDoggie.Race;
+                doggie.BirthDate = newDoggie.BirthDate;
+                doggie.Gender = newDoggie.Gender;
                 doggie.HasHome = newDoggie.HasHome;
-                //doggie.Vaccines = newDoggie.Vaccines;
+                doggie.Info = newDoggie.Info;
+                doggie.HairLenght = newDoggie.HairLenght;
+                doggie.Name = newDoggie.Name;
+                doggie.Size = newDoggie.Size;
+                _context.Dogs.Add(doggie);
+                _context.SaveChanges();
             }
-            _context.Dogs.Add(doggie);
-            _context.SaveChanges();
         }
 
         public void AddError(string text)

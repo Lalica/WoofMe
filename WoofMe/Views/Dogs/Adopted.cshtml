@@ -1,7 +1,64 @@
-﻿
-@{
-    ViewData["Title"] = "Adopted";
+﻿@model WoofMe.Models.DogListModels.AdoptedDogsModel
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @{
+            ViewData["Title"] = "Dogs that found home";
+        }
+    </title>
+</head>
+
+
+<body>
+<h4></h4> 
+@if (Model.Doggies.Count() != 0)
+{
+    var dogs = Model.Doggies.GetEnumerator();
+    dogs.MoveNext();
+    var cur = dogs.Current;
+    var i = 1;
+    while(cur != null)
+    {
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    @while(cur != null)
+                    {
+                    <div class="col-md-3">
+                        <img src="~/images/@cur.Picture" style="object-fit: cover; border-radius: 50%" height="200" width="200" />
+                        <h4><strong>@cur.Name</strong></h4>
+                        <h5>@cur.Age, @cur.Race</h5>
+                        <a asp-action="Detail" asp-route-id="@cur.Id"><strong>Details</strong></a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Employee"))
+                            {
+                                        <a asp-action="Edit" asp-route-id="@cur.Id"><strong>Edit</strong></a>
+                                        <a asp-action="Remove" asp-route-id="@cur.Id"><strong>Remove</strong></a>
+                            }
+                        }
+                    </div>
+                        var flag = !dogs.MoveNext();
+                        if (i++ % 4 == 0 || flag)
+                        {
+                            cur = dogs.Current;
+                            break;
+                        }
+                        cur = dogs.Current;
+                    }
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+    }
+
 }
+else
+{
+    <hr/>
+    <h4>There are no happily adopted dogs. Nay...</h4>
 
-<h2>Adopted</h2>
-
+}
+</body>
