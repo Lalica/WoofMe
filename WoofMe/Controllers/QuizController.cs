@@ -32,6 +32,11 @@ namespace WoofMe.Controllers
             if (ModelState.IsValid)
             {
                 var dogs = _repository.GetToBeAdpoted();
+                var result = new QuizResultModel();
+                if (dogs.Count == 0)
+                {
+                    return View("QuizResult", result);
+                }
                 var dict = new Dictionary<Dog, int>();
                 foreach (var dog in dogs)
                 {
@@ -45,8 +50,7 @@ namespace WoofMe.Controllers
                     if (dog.Gender == model.Gender) dict[dog]++;
                     if (dog.GetAge().Equals(model.Age)) dict[dog]++;
                 }
-
-                var result = new QuizResultModel();
+                
                 var max = dict.Values.Max();
 
                 foreach (var key in dict.Keys)
