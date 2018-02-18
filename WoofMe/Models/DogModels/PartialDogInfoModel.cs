@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using WoofMe.Classes;
 
 namespace WoofMe.Models.DogModels
@@ -26,6 +22,9 @@ namespace WoofMe.Models.DogModels
         [Required]
         [Display(Name = "Size")]
         public string Size { get; set; }
+        [Required]
+        [Display(Name = "Hair Lenght")]
+        public string HairLenght { get; set; }
         [Display(Name = "Gender")]
         public string Gender { get; set; }
 
@@ -36,8 +35,9 @@ namespace WoofMe.Models.DogModels
             Picture = dog.Picture;
             Age = dog.GetAge();
             Race = dog.Race;
-            Size = dog.Size.ToString().ToLower();
-            Gender = dog.Gender.ToString().ToLower(); ;
+            Size = dog.Size.ToString();
+            HairLenght = dog.HairLenght.ToString();
+            Gender = dog.Gender.ToString(); ;
         }
     }
 }

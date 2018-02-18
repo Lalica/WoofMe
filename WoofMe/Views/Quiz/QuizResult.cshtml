@@ -15,8 +15,9 @@
         foreach (var d in Model.Doggies)
         {
             <hr />
-            <img src="~/images/@d.Picture" style="object-fit: cover; border-radius: 3%" height="900" />
+            <img src="~/images/@d.Picture" style="object-fit: cover; border-radius: 3%" height="800" />
             <h4><strong>@d.Name</strong></h4>
+            <h5>Gender:@d.Gender, Age: @d.Age, Size: @d.Size, Hair lenght: @d.HairLenght</h5>
         }
 
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace WoofMe.Classes
 {
@@ -66,16 +62,6 @@ namespace WoofMe.Classes
         {
             HairLenght = lenght;
         }
-
-        //public bool AddVaccine(String vaccine)
-        //{
-        //    if (vaccine == null || Vaccines.Contains(vaccine))
-        //    {
-        //        return false;
-        //    }
-        //    Vaccines.Add(vaccine);
-        //    return true;
-        //}
 
         public bool Adopt()
         {

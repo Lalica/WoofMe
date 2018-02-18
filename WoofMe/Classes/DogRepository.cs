@@ -19,7 +19,7 @@ namespace WoofMe.Classes
             {
                 throw new ArgumentNullException();
             }
-            if (_context.Dogs.Any(t => t.Id == doggie.Id))
+            if (_context.Dogs.Any(t => t.Name == doggie.Name && t.BirthDate == doggie.BirthDate && t.Race == doggie.Race))
             {
                 throw new DuplicateNameException("Duplicate dog: " + doggie.Id);
             }
@@ -40,11 +40,6 @@ namespace WoofMe.Classes
         public List<Dog> GetToBeAdpoted()
         {
             return _context.Dogs.Where(t => !t.HasHome).ToList();
-        }
-
-        public List<Dog> GetFiltered(Func<Dog, bool> filterFunction)
-        {
-            return _context.Dogs.Where(t => filterFunction(t)).ToList();
         }
 
         public bool Adopt(Guid dogId)

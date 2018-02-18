@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using WoofMe.Classes;
 
 namespace WoofMe.Models.DogModels
@@ -24,8 +20,6 @@ namespace WoofMe.Models.DogModels
         [Required]
         [Display(Name = "Gender")]
         public Gender Gender { get; set; }
-        [Display(Name = "Info")]
-        public string Info { get; set; }
         [Required]
         [Display(Name = "Dog Size")]
         public DogSize Size { get; set; }

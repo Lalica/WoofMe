@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -73,33 +71,33 @@ namespace WoofMe
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             //initializing custom roles 
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             string[] roleNames = { "Admin", "Employee", "Member" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)
             {
-                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
                 {
                     //create the roles and seed them to the database: Question 1
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                    roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
 
             //Here you could create a super user who will maintain the web app
             var poweruser = new ApplicationUser{UserName = "lauratoric@gmail.com", Email = "lauratoric@gmail.com"};
             string userPWD = "lauraIsSoCool123.";
-            var _user = await UserManager.FindByEmailAsync("lauratoric@gmail.com");
+            var user = await userManager.FindByEmailAsync("lauratoric@gmail.com");
 
-            if (_user == null)
+            if (user == null)
             {
-                var createPowerUser = await UserManager.CreateAsync(poweruser, userPWD);
+                var createPowerUser = await userManager.CreateAsync(poweruser, userPWD);
                 if (createPowerUser.Succeeded)
                 {
                     //here we tie the new user to the role
-                    await UserManager.AddToRoleAsync(poweruser, "Admin");
+                    await userManager.AddToRoleAsync(poweruser, "Admin");
                 }
             }
         }

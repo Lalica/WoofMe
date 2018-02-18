@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WoofMe.Classes;
-using WoofMe.Models.DogListModels;
 using WoofMe.Models.DogModels;
 using WoofMe.Models.QuizModels;
 
@@ -27,7 +24,7 @@ namespace WoofMe.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Quiz(QuizModel model)
+        public IActionResult Quiz(QuizModel model)
         {
             if (ModelState.IsValid)
             {
@@ -45,10 +42,12 @@ namespace WoofMe.Controllers
 
                 foreach (var dog in dogs)
                 {
-                    if (dog.Size==model.Size) dict[dog]++;
-                    if (dog.HairLenght==model.HairLenght) dict[dog]++;
-                    if (dog.Gender == model.Gender) dict[dog]++;
-                    if (dog.GetAge().Equals(model.Age)) dict[dog]++;
+                    if (dog.Size == model.Size) dict[dog] += 3;
+                    else if (dog.Size == model.Size + 1 || dog.Size == model.Size - 1) dict[dog] += 1;
+                    if (dog.HairLenght == model.HairLenght) dict[dog] += 3;
+                    else if (dog.HairLenght == model.HairLenght + 1 || dog.HairLenght == model.HairLenght - 1) dict[dog] += 1;
+                    if (dog.Gender == model.Gender) dict[dog] += 3;
+                    if (dog.GetAge().Equals(model.Age)) dict[dog] += 2;
                 }
                 
                 var max = dict.Values.Max();

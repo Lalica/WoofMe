@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WoofMe.Classes;
@@ -57,7 +56,6 @@ namespace WoofMe.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddDog(AddNewDogModel model)
         {
-            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
             try
             {
                 if (ModelState.IsValid)
@@ -76,10 +74,6 @@ namespace WoofMe.Controllers
                                 {
                                     await file.CopyToAsync(fileStream);
                                     var newDog = new Dog(model.Name, model.Race, model.BirthDate, fileName);
-                                    if (model.Info != null)
-                                    {
-                                        newDog.AddInfo(model.Info);
-                                    }
                                     newDog.AddSize(model.Size);
                                     newDog.SetGender(model.Gender);
                                     newDog.AddHairLenght(model.Lenght);
@@ -162,17 +156,19 @@ namespace WoofMe.Controllers
         public IActionResult Edit(Guid Id)
         {
             Dog dog = _repository.GetDog(Id);
-            EditDogModel editedDog = new EditDogModel();
-            editedDog.Id = dog.Id;
-            editedDog.Picture = dog.Picture;
-            editedDog.Race = dog.Race;
-            editedDog.BirthDate = dog.BirthDate;
-            editedDog.Gender = dog.Gender;
-            editedDog.HasHome = dog.HasHome;
-            editedDog.Info = dog.Info;
-            editedDog.Lenght = dog.HairLenght;
-            editedDog.Name = dog.Name;
-            editedDog.Size = dog.Size;
+            EditDogModel editedDog = new EditDogModel
+            {
+                Id = dog.Id,
+                Picture = dog.Picture,
+                Race = dog.Race,
+                BirthDate = dog.BirthDate,
+                Gender = dog.Gender,
+                HasHome = dog.HasHome,
+                Info = dog.Info,
+                Lenght = dog.HairLenght,
+                Name = dog.Name,
+                Size = dog.Size
+            };
 
             return View("Edit", editedDog);
         }

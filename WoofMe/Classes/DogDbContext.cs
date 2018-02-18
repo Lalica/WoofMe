@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Security.Cryptography.X509Certificates;
 
 namespace WoofMe.Classes
 {
