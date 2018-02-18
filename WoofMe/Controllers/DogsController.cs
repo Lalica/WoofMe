@@ -217,6 +217,10 @@ namespace WoofMe.Controllers
                 {
                     _repository.AddError(ex.Message);
                 }
+                if (dog.HasHome)
+                {
+                    return RedirectToAction("Adopted");
+                }
                 return RedirectToAction("Home");
             }
             return View(editedDog);
