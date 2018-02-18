@@ -23,7 +23,7 @@ Everyone can:
 * Look at adopted dogs
 * Look at dogs searching for home
 * Take a quiz
-* Make an account (although it doesnt let you do anything new)
+* Make an account (although it doesn't let you do anything new)
 
-How the quiz works?
+How does the quiz work?
 > It will always give you at least one dog, unless there are no dogs searching for home. It searches for dogs matching the most of your needs.
